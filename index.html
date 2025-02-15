@@ -1,51 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Lab Form Processing Script</title>
-    <style>
-    .box {
-      border: 1px solid #444;
-      background-color: #ccc;
-      margin: 20px 20px;
-      padding: 5px 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 5 Form</title>
 </head>
 <body>
-  <div style="text-align:center;">
-    <h2>Lab Form Processing Script</h2>
-    <p>This page will display the results of the form that was submitted to it.</p>
-  </div>
-  <hr><br>
-  <h1>Thank you for your Lab form submission, <?php echo htmlentities($firstName) ?>!</h1>
-  <div class="box">
-  <h2>This section contains the information provided in the my info section:</h2>
-    <p><strong>First Name:</strong> <?php echo htmlentities($firstName) ?></p>
-    <p><strong>Last Name:</strong> <?php echo htmlentities($lastName) ?></p>
-    <p><strong>Phone Number:</strong> <?php echo htmlentities($phone) ?></p>
-    <p><strong>Email Address:</strong> <?php echo htmlentities($email) ?></p>
-    <p><strong>Gender:</strong> <?php echo htmlentities($gender) ?></p>
-    <p><strong>Age:</strong> <?php echo htmlentities($age) ?></p>
-  </div>
-  <div class="box">
-  <h2>This section contains the information provided in the availibility section:</h2>
-  <h3>Days Selected as Available:</h3>
-  <?php
-    if (is_array($available)){
-      foreach ($available as $ckvalue) {
-        echo ('<p>' . htmlentities($ckvalue) . '</p>');
-      }
-    } else {
-      echo ('<p>' . htmlentities($available) . '</p>');
-    }
-  ?>
-  <h3>Comments:</h3>
-  <p><?php echo nl2br(htmlentities($comments)) ?></p>
-  </div>
-  <div class="box">
-  <h2>This section contains the hidden information:</h2>
-    <p><strong>HTML Form created by:</strong> <?php echo htmlentities($hidden) ?></p>
-  </div>
+    <form action="http://bloomingdale.sat.iit.edu/kriedan/lab3formscript.php" method="POST">
+        <fieldset>
+            <legend>Personal Information</legend>
+            
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name_field" required>
+            <br>
+            
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name_field" required>
+            <br>
+            
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone_field" required>
+            <br>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email_field" required>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Additional Information</legend>
+            
+            <label>Gender:</label><br>
+            <input type="radio" id="male" name="gender_field" value="Male">
+            <label for="male">Male</label>
+            
+            <input type="radio" id="female" name="gender_field" value="Female">
+            <label for="female">Female</label>
+            <br>
+            
+            <label for="age">Age Group:</label>
+            <select id="age" name="age_field">
+                <option value="Under 18">Under 18</option>
+                <option value="18-25">18-25</option>
+                <option value="26-35">26-35</option>
+                <option value="36-50">36-50</option>
+                <option value="51+">51+</option>
+            </select>
+            <br>
+            
+            <label>Available Times:</label><br>
+            <input type="checkbox" id="morning" name="available_field[]" value="Morning">
+            <label for="morning">Morning</label>
+            
+            <input type="checkbox" id="afternoon" name="available_field[]" value="Afternoon">
+            <label for="afternoon">Afternoon</label>
+            
+            <input type="checkbox" id="evening" name="available_field[]" value="Evening">
+            <label for="evening">Evening</label>
+            <br>
+            
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="comments_field" rows="4" cols="40"></textarea>
+        </fieldset>
+        
+        <input type="hidden" name="hidden_field" value="Your Name Here">
+        
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
